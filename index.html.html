@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sami Khan | Creative Director</title>
+    <title>Abdullah Khan | Front-End Developer</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&family=Montserrat:wght@900&display=swap"
         rel="stylesheet">
@@ -73,61 +73,114 @@
             z-index: 9999;
         }
 
-        nav {
-            width: 200px;
-            height: 100vh;
-            border-right: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 60px 30px;
-            background: var(--bg);
-            flex-shrink: 0;
-            z-index: 100;
+        /* --- Desktop: Classic Sidebar --- */
+nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100vh;
+    background: var(--bg);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px 30px;
+    z-index: 1000;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.nav-item {
+    background: none;
+    border: none;
+    color: var(--gray);
+    font-size: 0.7rem;
+    text-align: left;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 3px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.nav-item i {
+    margin-right: 10px;
+    font-size: 1rem;
+    color: #007AFF !important;
+}
+
+/* --- Mobile: Nav on Top, Logo on Bottom --- */
+@media (max-width: 768px) {
+    nav {
+        width: 100%;
+        height: auto;
+        padding: 0;
+        border-right: none;
+    }
+
+    /* Top Subheader (Navigation) */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        flex-direction: row;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        justify-content: space-around;
+        align-items: center;
+        gap: 0;
+        z-index: 1001;
+    }
+
+    /* Bottom Header (Logo) */
+    .logo-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50px;
+        background: var(--bg);
+        border-top: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0;
+        z-index: 1001;
+    }
+
+    .nav-item {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.55rem;
+        letter-spacing: 1px;
+        flex: 1;
+        padding: 5px 0;
+    }
+
+    .nav-item i {
+        margin-right: 0;
+        margin-bottom: 3px;
+        font-size: 1.1rem;
+    }
+
+    /* Small Screen Adjustments (320px) */
+    @media (max-width: 360px) {
+        .nav-item span {
+            font-size: 0.5rem;
+            letter-spacing: 0;
         }
-
-        .logo {
-            font-family: 'Helvetica Neue', Arial, sans-serif !important;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-
-        .nav-links {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-
-        }
-
-        .nav-item {
-            background: none;
-            border: none;
-            color: var(--gray);
-            font-size: 0.7rem;
-            text-align: left;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 700;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            cursor: none;
-            letter-spacing: 4px;
-
-        }
-
-        .nav-item i {
-            margin-right: 10px;
-            font-size: 1rem;
-            opacity: 0.7;
-            color:#007AFF !important;
-        }
-
-        .nav-item.active {
-            color: var(--accent);
-        }
-
+    }
+}
         main {
             flex-grow: 1;
             position: relative;
@@ -288,7 +341,14 @@
             #cursor-follower {
                 display: none;
             }
-
+ h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2rem, 6vw, 5rem);
+            line-height: 1;
+            margin-bottom: 25px;
+            overflow: hidden;
+            text-transform: uppercase;
+        }
             nav {
                 width: 100%;
                 height: auto;
@@ -339,6 +399,19 @@
             .social-grid {
                 grid-template-columns: 1fr;
             }
+
+            .btn {
+            padding: 15px 15px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            border: 1px solid var(--accent);
+            display: inline-block;
+            transition: 0.3s;
+        }
+
         }
 
 
@@ -720,30 +793,33 @@
     <div id="cursor-follower"></div>
 
     <nav>
-        <div class="logo  text-white fw-bold" href="#">
-                AK<span style="color: #007AFF">.</span></div>
-        <div class="nav-links">
-    <button class="nav-item active" onclick="changeSection('home')">
-        <i class="fa-solid fa-house"></i>Home
-    </button>
-    <button class="nav-item" onclick="changeSection('biography')">
-        <i class="fa-solid fa-user-ninja"></i>Biography
-    </button>
-    <button class="nav-item" onclick="changeSection('skills')">
-        <i class="fa-solid fa-code-branch"></i>Skills
-    </button>
-    <button class="nav-item" onclick="changeSection('work')">
-        <i class="fa-solid fa-clapperboard"></i>Work
-    </button>
-    <button class="nav-item" onclick="changeSection('socials')">
-        <i class="fa-solid fa-share-nodes"></i>Socials
-    </button>
-    <button class="nav-item" onclick="changeSection('contact')">
-        <i class="fa-solid fa-paper-plane"></i>Contact
-    </button>
-</div>
-    </nav>
+    <div class="logo-container">
+        <div class="logo text-white fw-bold">
+            AK<span style="color: #007AFF">.</span>
+        </div>
+    </div>
 
+    <div class="nav-links">
+        <button class="nav-item active" onclick="changeSection('home')">
+            <i class="fa-solid fa-house"></i><span>Home</span>
+        </button>
+        <button class="nav-item" onclick="changeSection('biography')">
+            <i class="fa-solid fa-user-ninja"></i><span>Biography</span>
+        </button>
+        <button class="nav-item" onclick="changeSection('skills')">
+            <i class="fa-solid fa-code-branch"></i><span>Skills</span>
+        </button>
+        <button class="nav-item" onclick="changeSection('work')">
+            <i class="fa-solid fa-clapperboard"></i><span>Work</span>
+        </button>
+        <button class="nav-item" onclick="changeSection('socials')">
+            <i class="fa-solid fa-share-nodes"></i><span>Socials</span>
+        </button>
+        <button class="nav-item" onclick="changeSection('contact')">
+            <i class="fa-solid fa-paper-plane"></i><span>Contact</span>
+        </button>
+    </div>
+</nav>
     <main>
         <div class="content-wrapper">
             <section id="home" class="section-content active">
@@ -753,7 +829,7 @@
         </div>
 
         <h1 class="split text-gradient">ABDULLAH KHAN</h1>
-        <h1 class="split" style="font-size: clamp(1.5rem, 4vw, 3rem); margin-top: -15px;">Front-End Developer.</h1>
+                    <h3 class="split">Front-End Developer</h3>
 
         <p class="reveal" style="max-width: 600px; margin-top: 20px;">
             Specializing in building robust web architectures with 
@@ -819,7 +895,7 @@
         <div class="reveal">
             <span style="font-size: 0.6rem; letter-spacing: 3px; color:#007AFF !important; font-weight: 700;">02 // EXPERTISE</span>
         </div>
-        <h1 class="split main-title-proper">Technical <span class="text-gradient">Stack.</span></h1>
+                    <h1 class="split">TECHNICAL STACK</h1>
         
         <p class="reveal bio-lead" style="margin-bottom: 40px;">
             A comprehensive toolkit specialized in building high-performance web applications and scalable e-commerce solutions.
@@ -1016,7 +1092,9 @@
         <div class="reveal">
             <span style="font-size: 0.6rem; letter-spacing: 3px; color:#007AFF !important; font-weight: 700;">04 // CONTACT</span>
         </div>
-        <h1 class="split main-title-proper" style="font-size: 3rem !important;">Start a <span class="text-gradient">conversation.</span></h1>
+                    <h1 class="split">CONTACT US</h1>
+                                        <h3 class="split">Start a conversation</h3>
+
 
         <div class="contact-grid">
             <div class="contact-info reveal">
