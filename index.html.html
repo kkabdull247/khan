@@ -73,7 +73,7 @@
             z-index: 9999;
         }
 
-        /* --- Desktop: Classic Sidebar --- */
+     /* --- Desktop: Sidebar Layout --- */
 nav {
     position: fixed;
     left: 0;
@@ -84,7 +84,8 @@ nav {
     border-right: 1px solid var(--border);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /* This pushes nav-links to top and logo-container to bottom */
+    justify-content: space-between; 
     padding: 60px 30px;
     z-index: 1000;
 }
@@ -92,8 +93,12 @@ nav {
 .nav-links {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
 }
+
+/* .logo-container {
+    padding-top: 20px;
+} */
 
 .nav-item {
     background: none;
@@ -108,15 +113,19 @@ nav {
     align-items: center;
     cursor: pointer;
     transition: 0.3s;
+        color: #007AFF;
+
 }
 
 .nav-item i {
-    margin-right: 10px;
+    margin-right: 12px;
     font-size: 1rem;
-    color: #007AFF !important;
+    color: #ffffff !important;
+    width: 20px;
+    text-align: center;
 }
 
-/* --- Mobile: Nav on Top, Logo on Bottom --- */
+/* --- Mobile Responsive (Below 768px) --- */
 @media (max-width: 768px) {
     nav {
         width: 100%;
@@ -125,60 +134,65 @@ nav {
         border-right: none;
     }
 
-    /* Top Subheader (Navigation) */
-    .nav-links {
+    /* Top Header for Logo */
+    .logo-container {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 60px;
-        flex-direction: row;
         background: var(--bg);
         border-bottom: 1px solid var(--border);
-        justify-content: space-around;
+        display: flex;
         align-items: center;
-        gap: 0;
+        justify-content: center;
         z-index: 1001;
+        order: -1; /* Forces logo to the top visually on mobile */
     }
 
-    /* Bottom Header (Logo) */
-    .logo-container {
+    /* Bottom Sub-header for Nav */
+    .nav-links {
         position: fixed;
         bottom: 0;
         left: 0;
         width: 100%;
-        height: 50px;
+        height: 70px;
+        flex-direction: row;
         background: var(--bg);
         border-top: 1px solid var(--border);
-        display: flex;
+        justify-content: space-around;
         align-items: center;
-        justify-content: center;
-        margin-bottom: 0;
         z-index: 1001;
     }
 
+    /* Column stacking for Icon + Text */
     .nav-item {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        font-size: 0.55rem;
-        letter-spacing: 1px;
+        text-align: center;
         flex: 1;
+        font-size: 0.55rem;
+        letter-spacing: 0.5px;
         padding: 5px 0;
     }
 
     .nav-item i {
         margin-right: 0;
-        margin-bottom: 3px;
-        font-size: 1.1rem;
+        margin-bottom: 4px;
+        font-size: 1.2rem;
     }
 
-    /* Small Screen Adjustments (320px) */
-    @media (max-width: 360px) {
-        .nav-item span {
-            font-size: 0.5rem;
-            letter-spacing: 0;
-        }
+    .nav-item span {
+        display: block;
+    }
+}
+
+/* Fix for 320px screens */
+@media (max-width: 350px) {
+    .nav-item {
+        font-size: 0.5rem;
+        letter-spacing: 0;
     }
 }
         main {
@@ -299,7 +313,10 @@ nav {
             letter-spacing: 2px;
             text-align: center;
         }
+.work-box i {
+                font-size: 1rem;
 
+}
         .social-card {
             display: flex;
             align-items: center;
@@ -336,11 +353,16 @@ nav {
                 overflow-y: auto;
                 cursor: auto;
             }
+.work-box i {
+                font-size: 0.7rem;
 
+}
             #cursor,
             #cursor-follower {
                 display: none;
             }
+
+         
  h1 {
             font-family: 'Montserrat', sans-serif;
             font-size: clamp(2rem, 6vw, 5rem);
@@ -352,7 +374,7 @@ nav {
             nav {
                 width: 100%;
                 height: auto;
-                padding: 20px;
+                /* padding: 20px; */
                 border-right: none;
                 border-bottom: 1px solid var(--border);
                 position: sticky;
@@ -368,7 +390,6 @@ nav {
             }
 
             .nav-item i {
-                display: none;
                 font-size: 0.8rem;
             }
 
@@ -791,34 +812,41 @@ nav {
 
     <div id="cursor"></div>
     <div id="cursor-follower"></div>
-
     <nav>
-    <div class="logo-container">
+
+        <div class="logo-container">
         <div class="logo text-white fw-bold">
             AK<span style="color: #007AFF">.</span>
         </div>
     </div>
-
     <div class="nav-links">
         <button class="nav-item active" onclick="changeSection('home')">
-            <i class="fa-solid fa-house"></i><span>Home</span>
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
         </button>
         <button class="nav-item" onclick="changeSection('biography')">
-            <i class="fa-solid fa-user-ninja"></i><span>Biography</span>
+            <i class="fa-solid fa-user-ninja"></i>
+            <span>Biography</span>
         </button>
         <button class="nav-item" onclick="changeSection('skills')">
-            <i class="fa-solid fa-code-branch"></i><span>Skills</span>
+            <i class="fa-solid fa-code-branch"></i>
+            <span>Skills</span>
         </button>
         <button class="nav-item" onclick="changeSection('work')">
-            <i class="fa-solid fa-clapperboard"></i><span>Work</span>
+            <i class="fa-solid fa-clapperboard"></i>
+            <span>Work</span>
         </button>
         <button class="nav-item" onclick="changeSection('socials')">
-            <i class="fa-solid fa-share-nodes"></i><span>Socials</span>
+            <i class="fa-solid fa-share-nodes"></i>
+            <span>Socials</span>
         </button>
         <button class="nav-item" onclick="changeSection('contact')">
-            <i class="fa-solid fa-paper-plane"></i><span>Contact</span>
+            <i class="fa-solid fa-paper-plane"></i>
+            <span>Contact</span>
         </button>
     </div>
+
+    
 </nav>
     <main>
         <div class="content-wrapper">
@@ -959,7 +987,7 @@ nav {
     <div class="work-grid reveal">
         
         <a href="https://forge-tech.vercel.app/" target="_blank" class="work-box">
-            <img src="./assets/fts.png" class="card-img-top" alt="Forge Tech">
+            <img src="fts.png" class="card-img-top" alt="Forge Tech">
             <div class="card-body">
                 <span class="project-tag">Frontend / JS</span>
                 <div class="project-title">FORGE TECH</div>
@@ -969,7 +997,7 @@ nav {
         </a>
 
         <a href="https://smm-world.vercel.app/" target="_blank" class="work-box">
-            <img src="./assets/smm.png" class="card-img-top" alt="SMM World">
+            <img src="smm.png" class="card-img-top" alt="SMM World">
             <div class="card-body">
                 <span class="project-tag">Bootstrap 3</span>
                 <div class="project-title">SMM-WORLD</div>
@@ -979,7 +1007,7 @@ nav {
         </a>
 
         <a href="https://moonsoonn.vercel.app/" target="_blank" class="work-box">
-            <img src="./assets/moonsoon.png" class="card-img-top" alt="Moonsoon">
+            <img src="moonsoon.png" class="card-img-top" alt="Moonsoon">
             <div class="card-body">
                 <span class="project-tag">HTML / CSS / JS</span>
                 <div class="project-title">MOONSOON</div>
@@ -989,7 +1017,7 @@ nav {
         </a>
 
         <a href="https://dev-trendoza.pantheonsite.io/" target="_blank" class="work-box">
-            <img src="./assets/Trendoza-Project.png" class="card-img-top" alt="Trendoza">
+            <img src="Trendoza-Project.png" class="card-img-top" alt="Trendoza">
             <div class="card-body">
                 <span class="project-tag">WordPress / Shop</span>
                 <div class="project-title">TRENDOZA ORIGINALS</div>
@@ -999,7 +1027,7 @@ nav {
         </a>
 
         <a href="https://azstore.free.nf/" target="_blank" class="work-box">
-            <img src="./assets/b1.png" class="card-img-top" alt="Alpha Store">
+            <img src="b1.png" class="card-img-top" alt="Alpha Store">
             <div class="card-body">
                 <span class="project-tag">PHP / MySQL</span>
                 <div class="project-title">ALPHA STORE</div>
@@ -1009,7 +1037,7 @@ nav {
         </a>
 
         <a href="https://covidtestingsystem.free.nf/" target="_blank" class="work-box">
-            <img src="./assets/b2.png" class="card-img-top" alt="Covid System">
+            <img src="b2.png" class="card-img-top" alt="Covid System">
             <div class="card-body">
                 <span class="project-tag">PHP / HealthTech</span>
                 <div class="project-title">COVID SYSTEM</div>
@@ -1019,7 +1047,7 @@ nav {
         </a>
 
         <a href="https://servicehub.000.pe/" target="_blank" class="work-box">
-            <img src="./assets/P5.png" class="card-img-top" alt="Service Hub">
+            <img src="P5.png" class="card-img-top" alt="Service Hub">
             <div class="card-body">
                 <span class="project-tag">PHP / Booking</span>
                 <div class="project-title">SERVICE HUB</div>
@@ -1029,7 +1057,7 @@ nav {
         </a>
 
         <a href="https://kkabdull247.github.io/art/" target="_blank" class="work-box">
-            <img src="./assets/P4.png" class="card-img-top" alt="Art by Fatima">
+            <img src="P4.png" class="card-img-top" alt="Art by Fatima">
             <div class="card-body">
                 <span class="project-tag">HTML / CSS / JS</span>
                 <div class="project-title">ART BY FATIMA</div>
@@ -1039,7 +1067,7 @@ nav {
         </a>
 
         <a href="https://kkabdull247.github.io/snake2/" target="_blank" class="work-box">
-            <img src="./assets/snake2.png" class="card-img-top" alt="Snake Game">
+            <img src="snake2.png" class="card-img-top" alt="Snake Game">
             <div class="card-body">
                 <span class="project-tag">JS / Game Dev</span>
                 <div class="project-title">SNAKE GAME</div>
@@ -1114,7 +1142,7 @@ nav {
 
                 <div class="btn-group" style="margin-top: 20px;">
                     <a href="https://wa.me/923331279569" class="btn btn-fill">WhatsApp Chat</a>
-                    <a class="btn btn-fill" href="./assets/My Resumee.pdf"  download="Abdullah-Khan-Resume"
+                    <a class="btn btn-fill" href="./My Resumee.pdf"  download="Abdullah-Khan-Resume"
                            target="_blank">
                             <i class="fas fa-download me-2"></i>Resume
                         </a>
